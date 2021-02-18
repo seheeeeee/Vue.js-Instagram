@@ -16,11 +16,11 @@ export default {
 header{
     display: block;
     background-color: #fafafa;
-    width: 100%;
+    width: 375px;
     height: 50px;
-    margin: 0 auto;
     position: fixed; 
     z-index: 999;
+    border-bottom: 1px solid #eee;
 }
 .logoBox{
     position: absolute; left: 50%; top: 50%;

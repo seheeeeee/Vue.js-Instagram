@@ -1,8 +1,10 @@
 <template>
   <div id="app">
-    <insta-header></insta-header>
-    <insta-body v-bind:posts="posts" v-bind:filters="filters"></insta-body>
-    <insta-footer></insta-footer>
+    <div class="app-phone">
+      <insta-header></insta-header>
+      <insta-body v-bind:posts="posts" v-bind:filters="filters"></insta-body>
+      <insta-footer></insta-footer>
+    </div>
   </div>
 </template>
 
@@ -30,10 +32,21 @@ export default {
 </script>
 
 <style scoped>
+  *{
+    margin: 0; padding: 0;
+  }
   body{
     background-color: #fff;
   }
   #app{
-    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .app-phone{
+    width: 375px;
+    height: 620px;
+    overflow: hidden;
+    background-color: #fff;
   }
 </style>

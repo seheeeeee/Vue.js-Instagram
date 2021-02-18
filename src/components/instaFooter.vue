@@ -19,11 +19,12 @@ export default {
 
 <style>
 footer{
-    position: fixed; left: 0; bottom: 0;
-    /* position: -webkit-sticky; */
+    position: sticky; 
+    position: -webkit-sticky;
+    bottom: 0;
     z-index: 99;
     display: block;
-    width: 100%;
+    width: 375px;
     height: 35px;
     background-color: #fafafa;
     border-top: 1px solid #eee;

@@ -10,11 +10,14 @@
       </div>
       <div class="imageContainer" 
         v-bind:class="post.filter" 
-        v-bind:style="{backgroundImage: 'url('+post.postImage+')'}">
+        v-bind:style="{backgroundImage: 'url('+post.postImage+')'}"
+        v-on:dblclick="like">
       </div>
       <div class="content">
           <div class="heart">
-              <i class="far fa-heart fa-lg"></i>
+              <i class="far fa-heart fa-lg"
+              v-bind:class="{'fas':this.post.hasBeenLiked}"
+              v-on:click="like"></i>
           </div>
           <p class="likes">{{post.likes}} likes</p>
           <p class="caption">
@@ -29,6 +32,16 @@ export default {
     name: "instaPost",
     props: {
         post: Object,
+    },
+    methods:{
+        like: function(){
+            if(this.post.hasBeenLiked){
+                this.post.likes--;
+            }else{
+                this.post.likes++;
+            }
+            this.post.hasBeenLiked = !this.post.hasBeenLiked;
+        }
     }
 }
 </script>
