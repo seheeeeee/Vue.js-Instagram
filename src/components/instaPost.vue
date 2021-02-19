@@ -40,7 +40,7 @@ export default {
             }else{
                 this.post.likes++;
             }
-            this.post.hasBeenLiked = !this.post.hasBeenLiked;
+            this.post.hasBeenLiked = !this.post.hasBeenLiked; //false -> true.
         }
     }
 }

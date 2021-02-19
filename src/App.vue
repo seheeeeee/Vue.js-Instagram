@@ -2,8 +2,15 @@
   <div id="app">
     <div class="app-phone">
       <insta-header></insta-header>
-      <insta-body v-bind:posts="posts" v-bind:filters="filters"></insta-body>
-      <insta-footer></insta-footer>
+      <insta-body 
+      v-bind:step="step"
+      v-bind:posts="posts" 
+      v-bind:filters="filters"
+      v-bind:image="image"
+      v-bind:selectedFilter="selectedFilter">
+      <!-- v-model:caption="caption"> -->
+      </insta-body>
+      <insta-footer :step="step" :image="image" v-on:step1="step1"></insta-footer>
     </div>
   </div>
 </template>
@@ -21,6 +28,16 @@ export default {
     return{
       posts,
       filters,
+      step: 1,
+      image: "",
+      selectedFilter: "",
+      caption: "",
+    }
+  },
+  methods: {
+    step1: function(image, step){
+      this.image = image;
+      this.step = step;
     }
   },
   components: {

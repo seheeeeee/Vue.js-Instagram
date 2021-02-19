@@ -5,7 +5,10 @@
             <i class="homeBtn fas fa-home fa-lg"></i>
         </div>
         <div class="postBox">
-            <i class="postBtn far fa-plus-square fa-lg"></i>
+            <input type="file" name="file" id="file" class="inputfile" v-on:change="uploadImage">
+            <label for="file">
+                <i class="postBtn far fa-plus-square fa-lg"></i>
+            </label>
         </div>
       </div>
   </footer>
@@ -13,7 +16,23 @@
 
 <script>
 export default {
+    props: ['step', 'image'],
+    methods: {
+        uploadImage: function(evt){ //FileReader API
+            const files = evt.target.files;
+            if(!files.length) return;//file 없을 경우 return
 
+            const reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = evt => {
+                this.image = evt.target.result;
+                this.step = 2;
+                this.$emit('step1', this.image, this.step);
+            };
+             // To enable reuploading of same files in Chrome
+            document.querySelector("#file").value = "";
+        }
+    }
 }
 </script>
 
@@ -37,5 +56,9 @@ footer{
 }
 .postBox{
     position: absolute; right: 10px; top: 6px;
+}
+.inputfile{
+    visibility: hidden;
+    opacity: 0;
 }
 </style>

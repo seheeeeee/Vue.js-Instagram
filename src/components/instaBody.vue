@@ -1,6 +1,6 @@
 <template>
   <div class="instaBody">
-      <div class="feed">
+      <div v-if="step === 1" class="feed">
           <insta-post v-for="post in posts" v-bind:post="post" v-bind:key="posts.indexOf(post)"></insta-post>
       </div>
   </div>
@@ -12,8 +12,10 @@ import instaPost from './instaPost.vue'
 export default {
     name: "instaBody",
     props: {
+        step: Number,
         posts: Array,
-        filters: Array
+        filters: Array,
+        image: String,
     },
     components: {
         'insta-post': instaPost
