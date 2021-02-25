@@ -67,7 +67,7 @@ export default {
         height: 32px;
     }
     .userName{
-        position: relative; top: -10px;
+        position: relative; top: -3px;
         padding-left: 7px;
         font-size: 0.9rem;
         font-weight: bold;

@@ -1,11 +1,12 @@
 <template>
   <footer>
       <div class="footer_wrap">
-        <div class="homeBox">
+        <div class="homeBox" v-on:click="goHomeFooter">
             <i class="homeBtn fas fa-home fa-lg"></i>
         </div>
         <div class="postBox">
-            <input type="file" name="file" id="file" class="inputfile" v-on:change="uploadImage">
+            <input type="file" name="file" id="file" class="inputfile" v-on:change="uploadImage"
+                :disabled="step !== 1">
             <label for="file">
                 <i class="postBtn far fa-plus-square fa-lg"></i>
             </label>
@@ -16,7 +17,12 @@
 
 <script>
 export default {
-    props: ['step', 'image'],
+    data: function(){
+        return {
+            step: 1,
+            image: "",
+        }
+    },
     methods: {
         uploadImage: function(evt){ //FileReader API
             const files = evt.target.files;
@@ -31,6 +37,9 @@ export default {
             };
              // To enable reuploading of same files in Chrome
             document.querySelector("#file").value = "";
+        },
+        goHomeFooter: function(){
+            this.$emit('goHomeFooter');
         }
     }
 }

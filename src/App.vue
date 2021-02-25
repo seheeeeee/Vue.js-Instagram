@@ -1,16 +1,17 @@
 <template>
   <div id="app">
     <div class="app-phone">
-      <insta-header></insta-header>
+      <insta-header :step="step" v-on:goHomeHeader="goHome"></insta-header>
       <insta-body 
+      v-on:stepUp="stepUpTo3"
       v-bind:step="step"
       v-bind:posts="posts" 
       v-bind:filters="filters"
       v-bind:image="image"
-      v-bind:selectedFilter="selectedFilter">
-      <!-- v-model:caption="caption"> -->
+      v-bind:selectedFilter="selectedFilter"
+      v-model="caption">
       </insta-body>
-      <insta-footer :step="step" :image="image" v-on:step1="step1"></insta-footer>
+      <insta-footer v-on:step1="step1" v-on:goHomeFooter="goHome"></insta-footer>
     </div>
   </div>
 </template>
@@ -22,6 +23,7 @@ import instaFooter from './components/instaFooter.vue'
 
 import posts from './data/post.js'
 import filters from './data/filter.js'
+import EventBus from './event-bus.js' //부모-자식 사이가 아니여도 자유롭게 사용이 가능함(단, 너무 많이 쓰면 관리 힘듦)
 
 export default {
   data: function(){
@@ -38,7 +40,23 @@ export default {
     step1: function(image, step){
       this.image = image;
       this.step = step;
-    }
+    },
+    stepUpTo3: function(){
+      this.step = this.step + 1;
+
+    },
+    goHome: function(){
+      this.image = "";
+      this.selectedFilter = "";
+      this.caption = "";
+      this.step = 1;
+    },
+    
+  },
+  created: function(){
+    EventBus.$on("filter-selected", evt => {
+      this.selectedFilter = evt.filter;
+    });
   },
   components: {
     'insta-header': instaHeader,
