@@ -82,4 +82,7 @@ export default {
         padding: 10px;
         border-bottom: 1px solid #eee;
     }
+    .captionContainer textarea:focus{
+        outline: 0;
+    }
 </style>

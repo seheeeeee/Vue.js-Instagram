@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div class="app-phone">
-      <insta-header :step="step" v-on:goHomeHeader="goHome"></insta-header>
+      <insta-header :step="step" v-on:goHomeHeader="goHome" v-on:donePost="sharePost"></insta-header>
       <insta-body 
       v-on:stepUp="stepUpTo3"
       v-bind:step="step"
@@ -51,7 +51,18 @@ export default {
       this.caption = "";
       this.step = 1;
     },
-    
+    sharePost: function(){
+      const post = {
+        username: "fullstack_vue",
+        userImage: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/vue_lg_bg.png",
+        postImage: this.image,
+        likes: 0,
+        caption: this.caption,
+        filter: this.filterType,
+      }
+      this.posts.unshift(post);
+      this.goHome();
+    }
   },
   created: function(){
     EventBus.$on("filter-selected", evt => {

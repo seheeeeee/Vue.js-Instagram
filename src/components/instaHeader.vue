@@ -5,7 +5,7 @@
           <a class="cancelBtn" v-if="step === 2 || step === 3"
             v-on:click="goHomeHeader">Cancel</a>
           <a class="nextBtn" v-if="step === 2" v-on:click="stepUp">Next</a>
-          <a class="doneBtn" v-if="step === 3">Done</a>
+          <a class="doneBtn" v-if="step === 3" @click="donePost">Done</a>
       </div>
   </header>
 </template>
@@ -24,6 +24,9 @@ export default {
         },
         stepUp: function(){
             this.$emit('stepUp', this.step3);
+        },
+        donePost: function(){
+            this.$emit('donePost');
         }
     },
 
