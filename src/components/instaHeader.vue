@@ -4,7 +4,7 @@
           <img src="./source/logo.png" class="logo" alt="">
           <a class="cancelBtn" v-if="step === 2 || step === 3"
             v-on:click="goHomeHeader">Cancel</a>
-          <a class="nextBtn" v-if="step === 2" v-on:click="stepUp">Next</a>
+          <a class="nextBtn" v-if="step === 2" @click="stepUp">Next</a>
           <a class="doneBtn" v-if="step === 3" @click="donePost">Done</a>
       </div>
   </header>
@@ -23,7 +23,7 @@ export default {
             this.$emit('goHomeHeader');
         },
         stepUp: function(){
-            this.$emit('stepUp', this.step3);
+            this.$emit('stepUp');
         },
         donePost: function(){
             this.$emit('donePost');

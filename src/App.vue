@@ -1,9 +1,11 @@
 <template>
   <div id="app">
     <div class="app-phone">
-      <insta-header :step="step" v-on:goHomeHeader="goHome" v-on:donePost="sharePost"></insta-header>
-      <insta-body 
+      <insta-header :step="step" 
+      v-on:goHomeHeader="goHome" 
       v-on:stepUp="stepUpTo3"
+      v-on:donePost="sharePost"></insta-header>
+      <insta-body 
       v-bind:step="step"
       v-bind:posts="posts" 
       v-bind:filters="filters"
@@ -43,7 +45,6 @@ export default {
     },
     stepUpTo3: function(){
       this.step = this.step + 1;
-
     },
     goHome: function(){
       this.image = "";
