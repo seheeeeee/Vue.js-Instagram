@@ -36,10 +36,10 @@ export default {
 <style>
 header{
     display: block;
-    background-color: #fafafa;
+    background-color: #ffff;
     width: 375px;
     height: 50px;
-    position: fixed; 
+    /* position: fixed;  */
     z-index: 999;
     border-bottom: 1px solid #eee;
 }
@@ -47,7 +47,7 @@ header{
    position: relative;
 }
 .logo{
-     position: absolute; left: 50%; top: 12px;
+    position: absolute; left: 50%; top: 12px;
     transform: translate(-50%, 0);
    max-width: 120px;
    display: block;

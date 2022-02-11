@@ -48,10 +48,20 @@ export default {
 
 <style scoped>
     .instaPost{
-        padding-top: 50px;
+        width: 375px;
+        margin-top: 50px;
+        padding-bottom: 50px;
+        background-color: #ffff;
+        border: 1px solid #dbdbdb;
+        box-sizing: border-box;
+    }
+    .instaPost:first-child{
+        border-top: 0;
+        padding-top: 1px;
+        margin-top: 0px;
     }
     .instaPost:last-child{
-        margin-bottom: 80px;
+        padding-bottom: 80px;
     }
     .header{
         height: 30px;
