@@ -28,7 +28,12 @@ import filters from './data/filter.js'
 import EventBus from './event-bus.js' //부모-자식 사이가 아니여도 자유롭게 사용이 가능함(단, 너무 많이 쓰면 관리 힘듦)
 
 export default {
-  data: function(){
+  components: {
+    'insta-header': instaHeader,
+    'insta-body': instaBody,
+    'insta-footer': instaFooter
+  },
+  data(){
     return{
       posts,
       filters,
@@ -39,22 +44,22 @@ export default {
     }
   },
   methods: {
-    step1: function(image, step){
+    step1(image, step){
       this.image = image;
       this.step = step;
     },
-    stepUpTo3: function(){
+    stepUpTo3(){
       this.step = this.step + 1;
     },
-    goHome: function(){
+    goHome(){
       this.image = "";
       this.selectedFilter = "";
       this.caption = "";
       this.step = 1;
     },
-    sharePost: function(){
+    sharePost(){
       const post = {
-        username: "fullstack_vue",
+        username: "have_a_good_day",
         userImage: "https://s3-us-west-2.amazonaws.com/s.cdpn.io/1211695/vue_lg_bg.png",
         postImage: this.image,
         likes: 0,
@@ -63,18 +68,22 @@ export default {
       }
       this.posts.unshift(post);
       this.goHome();
-    }
+    },
+    pageHeight(wrap){
+      let viewHeight = window.innerHeight;
+      return wrap.style.paddingTop = viewHeight*0.2 + 'px';
+    },
   },
-  created: function(){
+  created(){
     EventBus.$on("filter-selected", evt => {
       this.selectedFilter = evt.filter;
     });
   },
-  components: {
-    'insta-header': instaHeader,
-    'insta-body': instaBody,
-    'insta-footer': instaFooter
-  }
+  mounted(){
+    let app = document.getElementById('app');
+    this.pageHeight(app)
+  },
+  
 }
 </script>
 
@@ -94,6 +103,11 @@ export default {
     width: 375px;
     height: 620px;
     overflow: hidden;
-    background-color: #fff;
+    background-color: #fafafa;
+    box-shadow: 0 1px 5px rgba(0,0,0,0.3);
+  }
+  .homeBtn{
+    display: block;
+    padding-top: 100px;
   }
 </style>
